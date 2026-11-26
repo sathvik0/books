@@ -1,235 +1,297 @@
 <!doctype html>
 <html><head><meta charset="utf-8">
 <style>
-:root{--bg:#F7F9FC;--navy:#0B255E;--blue:#1656B4;--coral:#EE5C58;--purple:#5C2C83;--gold:#B0841E;
---ink:#26324D;--muted:#5D6883;--line:#DDE4EF;--blueT:#EAF1FB;--purpleT:#F2ECF8;--coralT:#FDEDEC}
+@font-face{font-family:'Plex';src:url(fonts/ibm-plex-sans-latin-400-normal.woff2) format('woff2');font-weight:400}
+@font-face{font-family:'Plex';src:url(fonts/ibm-plex-sans-latin-500-normal.woff2) format('woff2');font-weight:500}
+@font-face{font-family:'Plex';src:url(fonts/ibm-plex-sans-latin-600-normal.woff2) format('woff2');font-weight:600}
+@font-face{font-family:'Plex';src:url(fonts/ibm-plex-sans-latin-700-normal.woff2) format('woff2');font-weight:700}
+@font-face{font-family:'PlexMono';src:url(fonts/ibm-plex-mono-latin-400-normal.woff2) format('woff2');font-weight:400}
+@font-face{font-family:'PlexMono';src:url(fonts/ibm-plex-mono-latin-500-normal.woff2) format('woff2');font-weight:500}
+@font-face{font-family:'PlexMono';src:url(fonts/ibm-plex-mono-latin-600-normal.woff2) format('woff2');font-weight:600}
+/* Theme: Targeting Simulator (green, IBM Plex) */
+:root{--bg:#fbfdfb;--fg:#17241e;--muted:#5b6b63;--panel:#eaf4ee;--line:#a9bdb2;--accent:#0e6e4a;--soft:#d3ece0;--off:#8a7f6e;--ink:#17241e}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{width:1920px;height:1080px;overflow:hidden;background:var(--bg);font-family:'Inter',sans-serif;
-  -webkit-font-smoothing:antialiased;color:var(--ink);font-feature-settings:"cv11","ss01"}
+html,body{width:1920px;height:1080px;overflow:hidden;background:var(--bg);font-family:'Plex',sans-serif;color:var(--fg);-webkit-font-smoothing:antialiased}
 #stage{position:absolute;inset:0;background:var(--bg)}
 .scene{position:absolute;inset:0;display:none}
 .a{position:absolute;will-change:transform,opacity}
-.deco{position:absolute;border-radius:50%;pointer-events:none}
+.mono{font-family:'PlexMono',monospace}
 /* header */
-.kicker{left:120px;top:82px;font-size:19px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue)}
-.title{left:120px;top:112px;font-size:52px;font-weight:800;letter-spacing:-.022em;color:var(--navy);white-space:nowrap}
-.uline{left:120px;top:190px;width:84px;height:6px;border-radius:3px;background:var(--coral);transform-origin:left center}
-/* generic boxes */
-.box{border-radius:18px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
-.solid{color:#fff;box-shadow:0 10px 28px rgba(11,37,94,.14)}
-.coral{background:var(--coral)} .purple{background:var(--purple)} .blue{background:var(--blue)} .navy{background:var(--navy)}
-.bname{font-size:30px;font-weight:700;letter-spacing:-.01em;line-height:1.15}
-.bsub{font-size:19px;font-weight:500;opacity:.88;margin-top:8px}
-.card{background:#fff;border:1.5px solid var(--line);box-shadow:0 8px 24px rgba(11,37,94,.07)}
-.gold-tag{font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
-.chip-gold{border:1.5px solid var(--gold);color:var(--gold);background:#fff;border-radius:999px;padding:7px 16px;font-size:15px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
-/* scene 2 inputs */
-.inbox{left:120px;width:420px;height:104px;border-radius:16px;background:#fff;border:1.5px solid var(--line);
-  box-shadow:0 6px 18px rgba(11,37,94,.06);padding:0 0 0 34px;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
-.inbox::before{content:"";position:absolute;left:0;top:0;bottom:0;width:10px;background:var(--c)}
-.inbox .n{font-size:27px;font-weight:700;color:var(--c);letter-spacing:-.01em}
-.inbox .gold-tag{margin-top:6px}
-.out{left:576px;width:424px;height:58px;border-radius:12px;display:flex;align-items:center;padding:0 20px;font-size:21px;white-space:nowrap;font-weight:600;color:var(--navy);background:var(--t)}
-.out b{color:var(--c);margin-right:10px;font-weight:800}
+.kicker{left:120px;top:80px;font-family:'PlexMono',monospace;font-size:19px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.title{left:120px;top:110px;font-size:52px;font-weight:600;letter-spacing:-.015em;color:var(--fg);white-space:nowrap}
+.uline{left:120px;top:190px;width:84px;height:5px;border-radius:3px;background:var(--accent);transform-origin:left center}
+/* boxes, in the simulator's vocabulary: panel / active / solid / off */
+.box{border-radius:14px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:var(--panel);border:1.5px solid var(--line)}
+.box.active{background:var(--soft);border:2px solid var(--accent)}
+.box.solid{background:var(--accent);border:none;color:#fff}
+.box.ink{background:var(--ink);border:none;color:#fff}
+.box.off{background:transparent;border:2px dashed var(--off)}
+.box.white{background:#fff}
+.bname{font-size:29px;font-weight:600;letter-spacing:-.005em;line-height:1.15}
+.bsub{font-family:'PlexMono',monospace;font-size:16px;margin-top:8px;color:var(--muted)}
+.solid .bsub,.ink .bsub{color:rgba(255,255,255,.82)}
+.tag{font-family:'PlexMono',monospace;font-size:14px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--off)}
+.tagchip{font-family:'PlexMono',monospace;border:1.5px solid var(--off);color:var(--off);background:var(--bg);border-radius:999px;padding:6px 14px;font-size:15px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.lbl{font-size:20px;font-weight:500;color:var(--off);white-space:nowrap}
+.grp{font-family:'PlexMono',monospace;font-size:15px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+/* input rows */
+.inbox{left:120px;width:420px;height:88px;border-radius:12px;background:var(--panel);border:1.5px solid var(--line);padding:0 0 0 26px;display:flex;flex-direction:column;justify-content:center}
+.inbox .n{font-size:25px;font-weight:600;color:var(--fg)}
+.inbox .tag{margin-top:4px}
+.inbox.off{background:transparent;border:2px dashed var(--off)}
+.out{left:576px;width:424px;height:52px;border-radius:10px;display:flex;align-items:center;padding:0 18px;font-size:20px;font-weight:500;color:var(--fg);background:#fff;border:1.5px solid var(--line);white-space:nowrap}
+.out b{color:var(--accent);margin-right:10px;font-weight:600}
+.out.off{border:2px dashed var(--off);background:transparent}
+.out.off b{color:var(--off)}
 /* flow nodes */
-.list{background:#fff;border:2px solid var(--c);border-radius:18px;display:flex;align-items:center;gap:18px;padding:0 26px;box-shadow:0 8px 22px rgba(11,37,94,.08)}
-.list .ico{width:46px;flex:none}
+.list{background:var(--soft);border:2px solid var(--c,var(--accent));border-radius:14px;display:flex;align-items:center;gap:18px;padding:0 24px}
+.list .ico{width:44px;flex:none}
 .list .ico i{display:flex;align-items:center;gap:7px;margin:7px 0}
-.list .ico i::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c)}
-.list .ico i::after{content:"";height:5px;flex:1;border-radius:3px;background:var(--c);opacity:.35}
-.list span{font-size:27px;font-weight:700;color:var(--navy);line-height:1.15}
-.review{background:#fff;border:2px solid var(--navy);border-radius:16px;display:flex;flex-direction:column;justify-content:center;align-items:center}
-.review .bname{color:var(--navy)}
-.lbl{font-size:21px;font-weight:600;color:var(--gold);font-style:italic;white-space:nowrap}
+.list .ico i::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c,var(--accent))}
+.list .ico i::after{content:"";height:5px;flex:1;border-radius:3px;background:var(--c,var(--accent));opacity:.4}
+.list span{font-size:26px;font-weight:600;color:var(--fg);line-height:1.15}
+.review{background:#fff;border:1.5px solid var(--fg);border-radius:14px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+/* data prep */
+.src{left:120px;width:290px;height:54px;border-radius:10px;background:var(--panel);border:1.5px solid var(--line);display:flex;align-items:center;padding:0 18px;font-size:20px;font-weight:500}
+.src.off{background:transparent;border:2px dashed var(--off);color:var(--fg)}
+.cont{border-radius:18px;background:var(--panel);border:1.5px solid var(--line)}
+.node{background:#fff;border:1.5px solid var(--line);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.node .k{font-family:'PlexMono',monospace;font-size:14px;color:var(--muted);letter-spacing:.06em}
+.node .v{font-size:25px;font-weight:600;margin-top:4px}
+.hl{border:3px solid var(--accent);border-radius:12px;background:rgba(14,110,74,.07)}
 /* workflow cards */
-.wcard{top:258px;width:390px;height:606px;border-radius:20px;background:#fff;border:1.5px solid var(--line);
-  box-shadow:0 10px 28px rgba(11,37,94,.08);overflow:hidden;display:flex;flex-direction:column}
+.wcard{top:258px;width:390px;height:606px;border-radius:16px;background:#fff;border:1.5px solid var(--line);overflow:hidden;display:flex;flex-direction:column}
 .wcard .hd{height:176px;padding:24px 28px;color:#fff;background:var(--h)}
-.wcard .num{font-size:20px;font-weight:800;color:var(--acc);letter-spacing:.08em}
-.wcard .ht{font-size:27px;font-weight:700;line-height:1.18;margin-top:8px;letter-spacing:-.01em}
-.wcard ul{list-style:none;padding:26px 28px 0;flex:1}
-.wcard li{position:relative;padding-left:26px;font-size:22px;line-height:1.38;margin-bottom:16px;color:var(--ink)}
-.wcard li::before{content:"";position:absolute;left:2px;top:11px;width:9px;height:9px;border-radius:50%;background:var(--h)}
-.wcard .oc{margin:0 18px 18px;border-radius:14px;background:var(--t);padding:16px 20px;min-height:116px}
-.wcard .oc .gold-tag{font-size:13px}
-.wcard .oc p{font-size:20px;font-weight:650;color:var(--navy);line-height:1.3;margin-top:6px}
-.chev{width:44px;height:44px;border-radius:50%;background:var(--coral);top:324px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(238,92,88,.35)}
-/* title scene */
-.bigtitle{left:0;width:1920px;text-align:center;top:372px;font-size:96px;font-weight:800;letter-spacing:-.03em;color:var(--navy)}
-.tchip{top:600px;height:132px;width:560px;border-radius:24px;background:#fff;border:1.5px solid var(--line);box-shadow:0 10px 30px rgba(11,37,94,.08);display:flex;align-items:center;gap:28px;padding:0 34px}
-.badge{border-radius:14px;color:#fff;font-weight:800;font-size:34px;padding:14px 22px;letter-spacing:.02em}
-.tchip .tx{font-size:34px;font-weight:600;color:var(--navy)} .tchip .eq{font-size:34px;color:var(--muted);font-weight:500}
+.wcard .num{font-family:'PlexMono',monospace;font-size:19px;font-weight:500;color:var(--acc);letter-spacing:.06em}
+.wcard .ht{font-size:27px;font-weight:600;line-height:1.2;margin-top:8px}
+.wcard ul{list-style:none;padding:24px 28px 0;flex:1}
+.wcard li{position:relative;padding-left:24px;font-size:21px;line-height:1.38;margin-bottom:14px;color:var(--fg)}
+.wcard li::before{content:"";position:absolute;left:2px;top:11px;width:8px;height:8px;border-radius:2px;background:var(--h)}
+.wcard .oc{margin:0 18px 18px;border-radius:12px;background:var(--panel);border:1px solid var(--line);padding:14px 18px;min-height:112px}
+.wcard .oc p{font-size:20px;font-weight:600;color:var(--fg);line-height:1.3;margin-top:6px}
+.chev{width:42px;height:42px;border-radius:50%;background:var(--accent);top:325px;display:flex;align-items:center;justify-content:center}
+/* title */
+.bigtitle{left:0;width:1920px;text-align:center;top:368px;font-size:96px;font-weight:600;letter-spacing:-.025em;color:var(--fg)}
+.tchip{top:600px;height:128px;width:560px;border-radius:18px;background:var(--panel);border:1.5px solid var(--line);display:flex;align-items:center;gap:26px;padding:0 32px}
+.badge{border-radius:10px;color:#fff;font-weight:600;font-size:34px;padding:12px 20px;letter-spacing:.02em}
+.tchip .tx{font-size:34px;font-weight:500} .tchip .eq{font-family:'PlexMono',monospace;font-size:32px;color:var(--muted)}
 /* close */
-.tile{top:268px;width:820px;height:240px;border-radius:24px;color:#fff;padding:40px 46px;box-shadow:0 14px 34px rgba(11,37,94,.16)}
-.tile .big{font-size:72px;font-weight:800;letter-spacing:-.02em}
-.tile .sm{font-size:32px;font-weight:600;opacity:.92;margin-top:6px}
-.pchip{top:590px;height:84px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:25px;font-weight:700;white-space:nowrap}
-.tagline{left:120px;top:742px;font-size:38px;font-weight:700;color:var(--navy);letter-spacing:-.015em}
+.tile{top:262px;width:820px;height:228px;border-radius:18px;color:#fff;padding:38px 46px}
+.tile .big{font-size:70px;font-weight:600;letter-spacing:-.015em}
+.tile .sm{font-size:31px;font-weight:500;opacity:.9;margin-top:4px}
+.pchip{top:572px;height:84px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:25px;font-weight:600;white-space:nowrap}
+.tagline{left:120px;top:730px;font-size:40px;font-weight:600;color:var(--fg);letter-spacing:-.01em}
 /* chrome */
 #caps{position:absolute;left:0;width:1920px;top:968px;display:flex;justify-content:center;pointer-events:none}
-#cap{background:rgba(11,37,94,.93);color:#fff;font-size:30px;font-weight:550;padding:12px 28px;border-radius:12px;letter-spacing:.005em;white-space:nowrap}
-#prog{position:absolute;left:0;bottom:0;height:6px;background:var(--coral);width:0}
-#progbg{position:absolute;left:0;bottom:0;height:6px;width:1920px;background:rgba(238,92,88,.14)}
+#cap{background:rgba(23,36,30,.93);color:#fbfdfb;font-size:30px;font-weight:500;padding:11px 26px;border-radius:10px;white-space:nowrap}
+#prog{position:absolute;left:0;bottom:0;height:6px;background:var(--accent);width:0}
+#progbg{position:absolute;left:0;bottom:0;height:6px;width:1920px;background:rgba(14,110,74,.13)}
 svg.ov{position:absolute;inset:0;width:1920px;height:1080px;overflow:visible}
 </style></head>
 <body><div id="stage">
 
 <!-- ============ 1 TITLE ============ -->
 <section class="scene" data-scene="1">
-  <div class="deco" style="width:760px;height:760px;right:-260px;top:-300px;background:rgba(22,86,180,.05)"></div>
-  <div class="deco" style="width:520px;height:520px;left:-220px;bottom:-260px;background:rgba(92,44,131,.05)"></div>
-  <div class="a kicker" data-at="t:0.15" data-anim="up" style="left:0;width:1920px;text-align:center;top:330px;font-size:22px">CE Targeting Process Overview</div>
+  <div class="a kicker" data-at="t:0.15" data-anim="up" style="left:0;width:1920px;text-align:center;top:322px;font-size:22px">CE Targeting Process Overview</div>
   <div class="a bigtitle" data-at="t:0.35" data-anim="up">How target lists are built</div>
-  <div class="a uline" data-at="t:0.7" data-anim="grow" style="left:910px;top:508px;width:100px;transform-origin:center"></div>
-  <div class="a tchip" data-at="w:0:13" data-anim="up" style="left:380px"><span class="badge blue">HCP</span><span class="eq">=</span><span class="tx">who to engage</span></div>
-  <div class="a tchip" data-at="w:0:15" data-anim="up" style="left:980px"><span class="badge purple">HCO</span><span class="eq">=</span><span class="tx">where to engage</span></div>
+  <div class="a uline" data-at="t:0.7" data-anim="grow" style="left:910px;top:506px;width:100px;transform-origin:center"></div>
+  <div class="a tchip" data-at="w:0:10" data-anim="up" style="left:380px"><span class="badge" style="background:var(--accent)">HCP</span><span class="eq">=</span><span class="tx">who to engage</span></div>
+  <div class="a tchip" data-at="w:0:12" data-anim="up" style="left:980px"><span class="badge" style="background:var(--ink)">HCO</span><span class="eq">=</span><span class="tx">where to engage</span></div>
 </section>
 
 <!-- ============ 2 HCP INPUTS ============ -->
 <section class="scene" data-scene="2">
   <div class="a kicker" data-at="t:0.1" data-anim="up">HCP Targeting · Inputs</div>
-  <div class="a title" data-at="t:0.22" data-anim="up">Five analytics partners feed one team</div>
+  <div class="a title" data-at="t:0.22" data-anim="up">Standard partners, plus brand-specific sources</div>
   <div class="a uline" data-at="t:0.45" data-anim="grow"></div>
+  <div class="a grp" data-at="w:0:2" data-off="-0.2" data-anim="fade" style="left:120px;top:226px">5 standard analytics partners</div>
   <svg class="ov">
-    <path class="arrow" data-at="w:0:11" data-off="0.15" d="M 1010 314 C 1200 314 1200 486 1392 486" stroke="#1656B4"/>
-    <path class="arrow" data-at="w:0:12" data-off="0.15" d="M 1010 440 C 1200 440 1200 526 1392 526" stroke="#1656B4"/>
-    <path class="arrow" data-at="w:0:13" data-off="0.15" d="M 1010 566 C 1200 566 1200 566 1392 566" stroke="#1656B4"/>
-    <path class="arrow" data-at="w:0:14" data-off="0.3" d="M 1010 692 C 1200 692 1200 606 1392 606" stroke="#5C2C83"/>
-    <path class="arrow" data-at="w:0:16" data-off="0.15" d="M 1010 818 C 1200 818 1200 646 1392 646" stroke="#1656B4"/>
+    <path class="arrow" data-at="w:0:11" data-off="0.15" d="M 1010 306 C 1200 306 1200 471 1392 471" stroke="#5b6b63"/>
+    <path class="arrow" data-at="w:0:12" data-off="0.15" d="M 1010 408 C 1200 408 1200 507 1392 507" stroke="#5b6b63"/>
+    <path class="arrow" data-at="w:0:13" data-off="0.15" d="M 1010 510 C 1200 510 1200 543 1392 543" stroke="#5b6b63"/>
+    <path class="arrow" data-at="w:0:15" data-off="0.15" d="M 1010 612 C 1200 612 1200 579 1392 579" stroke="#5b6b63"/>
+    <path class="arrow" data-at="w:0:17" data-off="0.15" d="M 1010 714 C 1200 714 1200 615 1392 615" stroke="#5b6b63"/>
+    <path class="arrow dashed" data-at="w:1:10" data-dur="0.7" d="M 1010 816 C 1200 816 1200 651 1392 651" stroke="#8a7f6e"/>
   </svg>
-  <div class="a inbox" data-at="w:0:2" data-off="0.00" data-anim="right" style="top:262px;--c:#1656B4"><div class="n">Decision Science</div><div class="gold-tag">US &amp; HYD SPOC</div></div>
-  <div class="a inbox" data-at="w:0:2" data-off="0.14" data-anim="right" style="top:388px;--c:#1656B4"><div class="n">PPA</div><div class="gold-tag">US &amp; HYD SPOC</div></div>
-  <div class="a inbox" data-at="w:0:2" data-off="0.28" data-anim="right" style="top:514px;--c:#1656B4"><div class="n">Predictive Analytics</div><div class="gold-tag">US &amp; HYD SPOC</div></div>
-  <div class="a inbox" data-at="w:0:2" data-off="0.42" data-anim="right" style="top:640px;--c:#5C2C83"><div class="n">Data Products</div><div class="gold-tag">US &amp; HYD SPOC</div></div>
-  <div class="a inbox" data-at="w:0:2" data-off="0.56" data-anim="right" style="top:766px;--c:#1656B4"><div class="n">Resource Optimization</div><div class="gold-tag">US &amp; HYD SPOC</div></div>
-  <div class="a out" data-at="w:0:11" data-anim="right" style="top:285px;--c:#1656B4;--t:#EAF1FB"><b>→</b>Strategic imperatives</div>
-  <div class="a out" data-at="w:0:12" data-anim="right" style="top:411px;--c:#1656B4;--t:#EAF1FB"><b>→</b>Behavioral segments / KPIs</div>
-  <div class="a out" data-at="w:0:13" data-anim="right" style="top:537px;--c:#1656B4;--t:#EAF1FB"><b>→</b>Propensity &amp; patient finder models</div>
-  <div class="a out" data-at="w:0:14" data-off="0.15" data-anim="right" style="top:663px;--c:#5C2C83;--t:#F2ECF8"><b>→</b>ARD</div>
-  <div class="a out" data-at="w:0:16" data-anim="right" style="top:789px;--c:#1656B4;--t:#EAF1FB"><b>→</b>Response curves</div>
-  <div class="a box solid coral" data-at="w:0:7" data-anim="pop" style="left:1400px;top:446px;width:400px;height:240px">
-    <div class="bname" style="font-size:36px">FIA Targeting Team</div><div class="bsub">Builds the target lists</div></div>
+  <div class="a inbox" data-at="w:0:2" data-off="0.00" data-anim="right" style="top:262px"><div class="n">Decision Science</div><div class="tag">US &amp; HYD SPOC</div></div>
+  <div class="a inbox" data-at="w:0:2" data-off="0.14" data-anim="right" style="top:364px"><div class="n">PPA</div><div class="tag">US &amp; HYD SPOC</div></div>
+  <div class="a inbox" data-at="w:0:2" data-off="0.28" data-anim="right" style="top:466px"><div class="n">Predictive Analytics</div><div class="tag">US &amp; HYD SPOC</div></div>
+  <div class="a inbox" data-at="w:0:2" data-off="0.42" data-anim="right" style="top:568px"><div class="n">Data Products</div><div class="tag">US &amp; HYD SPOC</div></div>
+  <div class="a inbox" data-at="w:0:2" data-off="0.56" data-anim="right" style="top:670px"><div class="n">Resource Optimization</div><div class="tag">US &amp; HYD SPOC</div></div>
+  <div class="a inbox off" data-at="w:1:4" data-anim="right" style="top:772px"><div class="n">Brand-specific sources</div><div class="tag">Varies by brand</div></div>
+  <div class="a out" data-at="w:0:11" data-anim="right" style="top:280px"><b>→</b>Strategic imperatives</div>
+  <div class="a out" data-at="w:0:12" data-anim="right" style="top:382px"><b>→</b>Behavioral segments / KPIs</div>
+  <div class="a out" data-at="w:0:13" data-anim="right" style="top:484px"><b>→</b>Propensity &amp; patient finder models</div>
+  <div class="a out" data-at="w:0:15" data-anim="right" style="top:586px"><b>→</b>ARD</div>
+  <div class="a out" data-at="w:0:17" data-anim="right" style="top:688px"><b>→</b>Response curves</div>
+  <div class="a out off" data-at="w:1:8" data-anim="right" style="top:790px"><b>+</b>Brand data, research &amp; insights</div>
+  <div class="a box solid" data-at="w:0:8" data-anim="pop" style="left:1400px;top:441px;width:400px;height:240px">
+    <div class="bname" style="font-size:36px">Targeting Team</div><div class="bsub">collates every source</div></div>
 </section>
 
-<!-- ============ 3 HCP FLOW ============ -->
+<!-- ============ 3 DATA PREP (new) ============ -->
 <section class="scene" data-scene="3">
+  <div class="a kicker" data-at="t:0.1" data-anim="up">HCP Targeting · Data Preparation</div>
+  <div class="a title" data-at="t:0.22" data-anim="up">Collated in Dataiku and Python</div>
+  <div class="a uline" data-at="t:0.45" data-anim="grow"></div>
+  <div class="a grp" data-at="t:0.5" data-anim="fade" style="left:120px;top:330px">Sources</div>
+  <div class="a src" data-at="t:0.55" data-anim="right" style="top:366px">Decision Science</div>
+  <div class="a src" data-at="t:0.65" data-anim="right" style="top:432px">PPA</div>
+  <div class="a src" data-at="t:0.75" data-anim="right" style="top:498px">Predictive Analytics</div>
+  <div class="a src" data-at="t:0.85" data-anim="right" style="top:564px">Data Products / ARD</div>
+  <div class="a src" data-at="t:0.95" data-anim="right" style="top:630px">Resource Optimization</div>
+  <div class="a src off" data-at="t:1.05" data-anim="right" style="top:696px">Brand-specific sources</div>
+  <div class="a cont" data-at="w:0:1" data-anim="fade" style="left:500px;top:300px;width:830px;height:540px"></div>
+  <div class="a grp" data-at="w:0:1" data-off="0.15" data-anim="fade" style="left:530px;top:326px;color:var(--accent)">Targeting Team · Dataiku flow</div>
+  <svg class="ov">
+    <path class="arrow" data-at="w:0:3" data-off="0.00" data-dur="0.4" d="M 414 393 L 494 393" stroke="#5b6b63"/>
+    <path class="arrow" data-at="w:0:3" data-off="0.08" data-dur="0.4" d="M 414 459 L 494 459" stroke="#5b6b63"/>
+    <path class="arrow" data-at="w:0:3" data-off="0.16" data-dur="0.4" d="M 414 525 L 494 525" stroke="#5b6b63"/>
+    <path class="arrow" data-at="w:0:3" data-off="0.24" data-dur="0.4" d="M 414 591 L 494 591" stroke="#5b6b63"/>
+    <path class="arrow" data-at="w:0:3" data-off="0.32" data-dur="0.4" d="M 414 657 L 494 657" stroke="#5b6b63"/>
+    <path class="arrow dashed" data-at="w:0:3" data-off="0.40" data-dur="0.4" d="M 414 723 L 494 723" stroke="#8a7f6e"/>
+    <path class="arrow" data-at="w:0:7" data-off="0.20" data-dur="0.3" d="M 702 470 L 732 470" stroke="#5b6b63"/>
+    <path class="arrow" data-at="w:0:7" data-off="0.40" data-dur="0.3" d="M 897 470 L 927 470" stroke="#5b6b63"/>
+    <path class="arrow" data-at="w:0:7" data-off="0.60" data-dur="0.3" d="M 1092 470 L 1122 470" stroke="#5b6b63"/>
+    <path class="arrow" data-at="w:0:10" data-off="0.25" data-dur="0.3" d="M 815 640 L 815 524" stroke="#0e6e4a"/>
+    <path class="arrow" data-at="w:0:10" data-off="0.35" data-dur="0.3" d="M 1010 640 L 1010 524" stroke="#0e6e4a"/>
+    <path class="arrow" data-at="w:0:10" data-off="0.45" data-dur="0.3" d="M 1205 640 L 1205 524" stroke="#0e6e4a"/>
+    <path class="arrow" data-at="w:1:10" data-off="-0.3" data-dur="0.45" d="M 1290 470 C 1360 470 1360 455 1424 455" stroke="#0e6e4a"/>
+    <path class="arrow" data-at="w:1:14" data-off="-0.3" data-dur="0.45" d="M 1615 520 L 1615 590" stroke="#0e6e4a"/>
+  </svg>
+  <div class="a node" data-at="w:0:7" data-off="0.0" data-anim="pop" style="left:540px;top:416px;width:160px;height:108px"><div class="k">RECIPE 1</div><div class="v">Ingest</div></div>
+  <div class="a node" data-at="w:0:7" data-off="0.2" data-anim="pop" style="left:735px;top:416px;width:160px;height:108px"><div class="k">RECIPE 2</div><div class="v">Clean</div></div>
+  <div class="a node" data-at="w:0:7" data-off="0.4" data-anim="pop" style="left:930px;top:416px;width:160px;height:108px"><div class="k">RECIPE 3</div><div class="v">Join</div></div>
+  <div class="a node" data-at="w:0:7" data-off="0.6" data-anim="pop" style="left:1125px;top:416px;width:160px;height:108px"><div class="k">RECIPE 4</div><div class="v">Score</div></div>
+  <div class="a hl" data-at="w:1:1" data-anim="fade" style="left:733px;top:414px;width:164px;height:112px"></div>
+  <div class="a hl" data-at="w:1:2" data-anim="fade" style="left:928px;top:414px;width:164px;height:112px"></div>
+  <div class="a hl" data-at="w:1:4" data-anim="fade" style="left:1123px;top:414px;width:164px;height:112px"></div>
+  <div class="a box white" data-at="w:0:10" data-anim="up" style="left:735px;top:644px;width:550px;height:110px;align-items:flex-start;padding-left:28px;text-align:left">
+    <div class="bname mono" style="font-family:'PlexMono',monospace;font-size:26px;color:var(--accent)">&gt;_ Python</div>
+    <div class="bsub" style="margin-top:6px">custom rules, joins &amp; QC checks</div></div>
+  <div class="a box active" data-at="w:1:10" data-off="-0.2" data-anim="pop" style="left:1430px;top:396px;width:370px;height:122px">
+    <div class="bname">HCP universe</div><div class="bsub">eligible HCPs + attributes</div></div>
+  <div class="a box solid" data-at="w:1:14" data-off="-0.2" data-anim="pop" style="left:1430px;top:594px;width:370px;height:122px">
+    <div class="bname">Target list</div><div class="bsub">scored &amp; tiered</div></div>
+</section>
+
+<!-- ============ 4 HCP FLOW ============ -->
+<section class="scene" data-scene="4">
   <div class="a kicker" data-at="t:0.1" data-anim="up">HCP Targeting · Flow</div>
   <div class="a title" data-at="t:0.22" data-anim="up">From target lists to the field</div>
   <div class="a uline" data-at="t:0.45" data-anim="grow"></div>
   <svg class="ov">
-    <path class="arrow" data-at="w:0:2" d="M 462 640 L 594 640" stroke="#0B255E"/>
-    <path class="arrow" data-at="w:0:6" d="M 922 640 L 1054 640" stroke="#0B255E"/>
-    <path class="arrow" data-at="w:0:10" d="M 1382 640 L 1514 640" stroke="#0B255E"/>
-    <path class="arrow dashed" data-at="w:0:17" data-dur="0.7" d="M 760 404 L 760 562" stroke="#B0841E"/>
+    <path class="arrow" data-at="w:0:4" d="M 462 640 L 594 640" stroke="#0e6e4a"/>
+    <path class="arrow" data-at="w:0:8" d="M 922 640 L 1054 640" stroke="#0e6e4a"/>
+    <path class="arrow" data-at="w:0:12" d="M 1382 640 L 1514 640" stroke="#0e6e4a"/>
+    <path class="arrow dashed" data-at="w:0:19" data-dur="0.7" d="M 760 404 L 760 562" stroke="#8a7f6e"/>
   </svg>
-  <div class="a box solid coral" data-at="t:0.55" data-anim="pop" style="left:120px;top:560px;width:340px;height:160px"><div class="bname">FIA Targeting Team</div></div>
-  <div class="a list" data-at="w:0:2" data-off="0.3" data-anim="pop" style="left:600px;top:570px;width:320px;height:140px;--c:#1656B4"><div class="ico"><i></i><i></i><i></i></div><span>HCP target lists</span></div>
-  <div class="a box solid purple" data-at="w:0:8" data-anim="pop" style="left:1060px;top:570px;width:320px;height:140px"><div class="bname">Call Planning</div></div>
-  <div class="a box solid purple" data-at="w:0:11" data-anim="pop" style="left:1520px;top:570px;width:280px;height:140px"><div class="bname">Veeva</div></div>
-  <div class="a chip-gold" data-at="w:0:11" data-off="0.3" data-anim="up" style="left:1595px;top:732px">HYD SPOC</div>
-  <div class="a review" data-at="w:0:13" data-anim="down" style="left:560px;top:292px;width:400px;height:110px"><div class="bname">US IPST / GMs</div></div>
-  <div class="a lbl" data-at="w:0:17" data-off="0.35" data-anim="right" style="left:784px;top:466px">Reviews &amp; follow-ups</div>
+  <div class="a box solid" data-at="t:0.5" data-anim="pop" style="left:120px;top:560px;width:340px;height:160px"><div class="bname">Targeting Team</div></div>
+  <div class="a list" data-at="w:0:4" data-off="0.3" data-anim="pop" style="left:600px;top:570px;width:320px;height:140px"><div class="ico"><i></i><i></i><i></i></div><span>HCP target lists</span></div>
+  <div class="a box" data-at="w:0:10" data-anim="pop" style="left:1060px;top:570px;width:320px;height:140px"><div class="bname">Call Planning</div></div>
+  <div class="a box" data-at="w:0:13" data-anim="pop" style="left:1520px;top:570px;width:280px;height:140px"><div class="bname">Veeva</div></div>
+  <div class="a tagchip" data-at="w:0:13" data-off="0.3" data-anim="up" style="left:1600px;top:732px">HYD SPOC</div>
+  <div class="a review" data-at="w:0:15" data-anim="down" style="left:560px;top:292px;width:400px;height:110px"><div class="bname">US IPST / GMs</div></div>
+  <div class="a lbl" data-at="w:0:19" data-off="0.35" data-anim="right" style="left:784px;top:468px">Reviews &amp; follow-ups</div>
 </section>
 
-<!-- ============ 4 HCP WORKFLOW ============ -->
-<section class="scene" data-scene="4">
+<!-- ============ 5 HCP WORKFLOW ============ -->
+<section class="scene" data-scene="5">
   <div class="a kicker" data-at="t:0.1" data-anim="up">HCP Targeting · Workflow</div>
   <div class="a title" data-at="t:0.22" data-anim="up">Four steps from strategy to the field</div>
   <div class="a uline" data-at="t:0.45" data-anim="grow"></div>
-  <div class="a wcard" data-at="w:0:0" data-off="-0.15" data-anim="up" style="left:120px;--h:#0B255E;--acc:#EE5C58;--t:#EAF1FB">
+  <div class="a wcard" data-at="w:0:0" data-off="-0.15" data-anim="up" style="left:120px;--h:#0e6e4a;--acc:#d3ece0">
     <div class="hd"><div class="num">01</div><div class="ht">Targeting Strategy Alignment</div></div>
     <ul><li>Align on brand goals and priorities</li><li>Define the HCP universe and eligibility</li><li>Agree success KPIs up front</li></ul>
-    <div class="oc"><div class="gold-tag">Outcome</div><p>Shared objectives and a defined HCP universe</p></div></div>
-  <div class="a chev" data-at="w:1:0" data-off="-0.3" data-anim="pop" style="left:513px"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M7 4 L13 10 L7 16" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-  <div class="a wcard" data-at="w:1:0" data-off="-0.15" data-anim="up" style="left:550px;--h:#0B255E;--acc:#EE5C58;--t:#EAF1FB">
+    <div class="oc"><div class="tag">Outcome</div><p>Shared objectives and a defined HCP universe</p></div></div>
+  <div class="a chev" data-at="w:1:0" data-off="-0.3" data-anim="pop" style="left:514px"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M7 4 L13 10 L7 16" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div class="a wcard" data-at="w:1:0" data-off="-0.15" data-anim="up" style="left:550px;--h:#0e6e4a;--acc:#d3ece0">
     <div class="hd"><div class="num">02</div><div class="ht">Advanced Analytics &amp; Opportunity Assessment</div></div>
-    <ul><li>Apply propensity and patient finder models</li><li>Layer in segments and response curves</li><li>Rank HCPs by opportunity</li></ul>
-    <div class="oc"><div class="gold-tag">Outcome</div><p>An opportunity-ranked HCP universe</p></div></div>
-  <div class="a chev" data-at="w:2:0" data-off="-0.3" data-anim="pop" style="left:943px"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M7 4 L13 10 L7 16" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-  <div class="a wcard" data-at="w:2:0" data-off="-0.15" data-anim="up" style="left:980px;--h:#0B255E;--acc:#EE5C58;--t:#EAF1FB">
+    <ul><li>Collate sources in Dataiku and Python</li><li>Apply propensity and patient finder models</li><li>Rank HCPs by opportunity</li></ul>
+    <div class="oc"><div class="tag">Outcome</div><p>An opportunity-ranked HCP universe</p></div></div>
+  <div class="a chev" data-at="w:2:0" data-off="-0.3" data-anim="pop" style="left:944px"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M7 4 L13 10 L7 16" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div class="a wcard" data-at="w:2:0" data-off="-0.15" data-anim="up" style="left:980px;--h:#0e6e4a;--acc:#d3ece0">
     <div class="hd"><div class="num">03</div><div class="ht">Target List Optimization</div></div>
     <ul><li>Translate insights into target tiers</li><li>Balance reach and frequency with capacity</li><li>Review with US IPST / GMs</li></ul>
-    <div class="oc"><div class="gold-tag">Outcome</div><p>Optimized, tiered target lists</p></div></div>
-  <div class="a chev" data-at="w:3:0" data-off="-0.3" data-anim="pop" style="left:1373px"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M7 4 L13 10 L7 16" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-  <div class="a wcard" data-at="w:3:0" data-off="-0.15" data-anim="up" style="left:1410px;--h:#0B255E;--acc:#EE5C58;--t:#EAF1FB">
+    <div class="oc"><div class="tag">Outcome</div><p>Optimized, tiered target lists</p></div></div>
+  <div class="a chev" data-at="w:3:0" data-off="-0.3" data-anim="pop" style="left:1374px"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M7 4 L13 10 L7 16" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div class="a wcard" data-at="w:3:0" data-off="-0.15" data-anim="up" style="left:1410px;--h:#0e6e4a;--acc:#d3ece0">
     <div class="hd"><div class="num">04</div><div class="ht">Field Enablement &amp; Deployment</div></div>
     <ul><li>Load lists into Call Planning and Veeva</li><li>Equip the field with clear guidance</li><li>Monitor uptake and refresh</li></ul>
-    <div class="oc"><div class="gold-tag">Outcome</div><p>Field-ready targets with clear guidance</p></div></div>
+    <div class="oc"><div class="tag">Outcome</div><p>Field-ready targets with clear guidance</p></div></div>
 </section>
 
-<!-- ============ 5 HCO FLOW ============ -->
-<section class="scene" data-scene="5">
+<!-- ============ 6 HCO FLOW ============ -->
+<section class="scene" data-scene="6">
   <div class="a kicker" data-at="t:0.1" data-anim="up">HCO Targeting · Flow</div>
   <div class="a title" data-at="t:0.22" data-anim="up">Same engine, focused on sites of care</div>
   <div class="a uline" data-at="t:0.45" data-anim="grow"></div>
   <svg class="ov">
-    <path class="arrow" data-at="w:0:1" d="M 394 550 C 450 550 440 615 492 615" stroke="#1656B4"/>
-    <path class="arrow" data-at="w:0:1" data-off="0.1" d="M 394 730 C 450 730 440 665 492 665" stroke="#5C2C83"/>
-    <path class="arrow" data-at="w:0:6" d="M 792 640 L 892 640" stroke="#0B255E"/>
-    <path class="arrow" data-at="w:0:8" d="M 1172 640 L 1272 640" stroke="#0B255E"/>
-    <path class="arrow" data-at="w:0:9" data-off="0.15" d="M 1532 640 L 1632 640" stroke="#0B255E"/>
-    <path class="arrow dashed" data-at="w:0:10" data-off="0.25" data-dur="0.6" d="M 1035 422 L 1035 571" stroke="#B0841E"/>
+    <path class="arrow" data-at="w:0:12" data-off="0.2" d="M 394 550 C 450 550 440 615 492 615" stroke="#5b6b63"/>
+    <path class="arrow" data-at="w:0:15" data-off="0.2" d="M 394 730 C 450 730 440 665 492 665" stroke="#5b6b63"/>
+    <path class="arrow" data-at="w:0:6" d="M 792 640 L 892 640" stroke="#17241e"/>
+    <path class="arrow" data-at="w:0:8" d="M 1172 640 L 1272 640" stroke="#17241e"/>
+    <path class="arrow" data-at="w:0:9" data-off="0.15" d="M 1532 640 L 1632 640" stroke="#17241e"/>
+    <path class="arrow dashed" data-at="w:0:19" data-off="0.35" data-dur="0.6" d="M 1035 422 L 1035 571" stroke="#8a7f6e"/>
   </svg>
-  <div class="a inbox" data-at="t:0.4" data-anim="right" style="left:110px;top:498px;width:284px;--c:#1656B4"><div class="n">Decision Science</div><div class="gold-tag">US &amp; HYD SPOC</div></div>
-  <div class="a inbox" data-at="t:0.55" data-anim="right" style="left:110px;top:678px;width:284px;--c:#5C2C83"><div class="n">Data Products / ARD</div><div class="gold-tag">US &amp; HYD SPOC</div></div>
-  <div class="a box solid coral" data-at="w:0:3" data-anim="pop" style="left:500px;top:570px;width:292px;height:140px"><div class="bname" style="font-size:27px">FIA Targeting<br>Team</div></div>
-  <div class="a list" data-at="w:0:7" data-anim="pop" style="left:900px;top:575px;width:270px;height:130px;--c:#5C2C83;padding:0 22px;gap:14px"><div class="ico" style="width:38px"><i></i><i></i><i></i></div><span style="font-size:25px">HCO target lists</span></div>
-  <div class="a box solid purple" data-at="w:0:8" data-off="0.2" data-anim="pop" style="left:1280px;top:575px;width:250px;height:130px"><div class="bname" style="font-size:28px">Call Planning</div></div>
-  <div class="a box solid purple" data-at="w:0:9" data-off="0.35" data-anim="pop" style="left:1640px;top:575px;width:180px;height:130px"><div class="bname" style="font-size:28px">Veeva</div></div>
-  <div class="a review" data-at="w:0:10" data-anim="down" style="left:885px;top:318px;width:300px;height:102px"><div class="bname">US IPST</div></div>
-  <div class="a lbl" data-at="w:0:10" data-off="0.5" data-anim="right" style="left:1056px;top:478px">Reviews &amp; follow-ups</div>
+  <div class="a inbox" data-at="w:0:12" data-anim="right" style="left:110px;top:506px;width:284px"><div class="n">Decision Science</div><div class="tag">US &amp; HYD SPOC</div></div>
+  <div class="a inbox" data-at="w:0:15" data-anim="right" style="left:110px;top:678px;width:284px;height:104px"><div class="n">Data Products / ARD</div><div class="tag">US &amp; HYD SPOC</div></div>
+  <div class="a box solid" data-at="w:0:3" data-anim="pop" style="left:500px;top:570px;width:292px;height:140px"><div class="bname">Targeting Team</div></div>
+  <div class="a list" data-at="w:0:7" data-anim="pop" style="left:900px;top:575px;width:270px;height:130px;--c:#17241e;background:#fff;padding:0 22px;gap:14px"><div class="ico" style="width:38px"><i></i><i></i><i></i></div><span style="font-size:25px">HCO target lists</span></div>
+  <div class="a box" data-at="w:0:8" data-off="0.2" data-anim="pop" style="left:1280px;top:575px;width:250px;height:130px"><div class="bname" style="font-size:28px">Call Planning</div></div>
+  <div class="a box" data-at="w:0:9" data-off="0.35" data-anim="pop" style="left:1640px;top:575px;width:180px;height:130px"><div class="bname" style="font-size:28px">Veeva</div></div>
+  <div class="a review" data-at="w:0:19" data-anim="down" style="left:885px;top:318px;width:300px;height:102px"><div class="bname">US IPST</div></div>
+  <div class="a lbl" data-at="w:0:19" data-off="0.6" data-anim="right" style="left:1056px;top:480px">Reviews &amp; follow-ups</div>
 </section>
 
-<!-- ============ 6 HCO WORKFLOW ============ -->
-<section class="scene" data-scene="6">
+<!-- ============ 7 HCO WORKFLOW ============ -->
+<section class="scene" data-scene="7">
   <div class="a kicker" data-at="t:0.1" data-anim="up">HCO Targeting · Workflow</div>
   <div class="a title" data-at="t:0.22" data-anim="up">Four steps to aligned account lists</div>
   <div class="a uline" data-at="t:0.45" data-anim="grow"></div>
-  <div class="a wcard" data-at="w:0:0" data-off="-0.15" data-anim="up" style="left:120px;--h:#5C2C83;--acc:#F7B4B2;--t:#F2ECF8">
+  <div class="a wcard" data-at="w:0:0" data-off="-0.15" data-anim="up" style="left:120px;--h:#17241e;--acc:#7fc9a4">
     <div class="hd"><div class="num">01</div><div class="ht">Targeting Strategy Alignment</div></div>
     <ul><li>Agree objectives with brand and account teams</li><li>Set the KPIs that define success</li></ul>
-    <div class="oc"><div class="gold-tag">Outcome</div><p>Clear objectives and agreed KPIs</p></div></div>
-  <div class="a chev" data-at="w:1:0" data-off="-0.3" data-anim="pop" style="left:513px"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M7 4 L13 10 L7 16" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-  <div class="a wcard" data-at="w:1:0" data-off="-0.15" data-anim="up" style="left:550px;--h:#5C2C83;--acc:#F7B4B2;--t:#F2ECF8">
+    <div class="oc"><div class="tag">Outcome</div><p>Clear objectives and agreed KPIs</p></div></div>
+  <div class="a chev" data-at="w:1:0" data-off="-0.3" data-anim="pop" style="left:514px"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M7 4 L13 10 L7 16" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div class="a wcard" data-at="w:1:0" data-off="-0.15" data-anim="up" style="left:550px;--h:#17241e;--acc:#7fc9a4">
     <div class="hd"><div class="num">02</div><div class="ht">Targeting Process Flow</div></div>
     <ul><li>Apply COT filters to the account universe</li><li>ADPA &amp; SOC validation</li><li>Incorporate field input</li></ul>
-    <div class="oc"><div class="gold-tag">Outcome</div><p>A validated account universe</p></div></div>
-  <div class="a chev" data-at="w:2:0" data-off="-0.3" data-anim="pop" style="left:943px"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M7 4 L13 10 L7 16" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-  <div class="a wcard" data-at="w:2:0" data-off="-0.15" data-anim="up" style="left:980px;--h:#5C2C83;--acc:#F7B4B2;--t:#F2ECF8">
+    <div class="oc"><div class="tag">Outcome</div><p>A validated account universe</p></div></div>
+  <div class="a chev" data-at="w:2:0" data-off="-0.3" data-anim="pop" style="left:944px"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M7 4 L13 10 L7 16" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div class="a wcard" data-at="w:2:0" data-off="-0.15" data-anim="up" style="left:980px;--h:#17241e;--acc:#7fc9a4">
     <div class="hd"><div class="num">03</div><div class="ht">Target List Review</div></div>
     <ul><li>Review adds, drops and changes</li><li>Walk through with stakeholders and US IPST</li></ul>
-    <div class="oc"><div class="gold-tag">Outcome</div><p>A stakeholder-approved target list</p></div></div>
-  <div class="a chev" data-at="w:3:0" data-off="-0.3" data-anim="pop" style="left:1373px"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M7 4 L13 10 L7 16" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-  <div class="a wcard" data-at="w:3:0" data-off="-0.15" data-anim="up" style="left:1410px;--h:#5C2C83;--acc:#F7B4B2;--t:#F2ECF8">
+    <div class="oc"><div class="tag">Outcome</div><p>A stakeholder-approved target list</p></div></div>
+  <div class="a chev" data-at="w:3:0" data-off="-0.3" data-anim="pop" style="left:1374px"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M7 4 L13 10 L7 16" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div class="a wcard" data-at="w:3:0" data-off="-0.15" data-anim="up" style="left:1410px;--h:#17241e;--acc:#7fc9a4">
     <div class="hd"><div class="num">04</div><div class="ht">Field Enablement &amp; Deployment</div></div>
     <ul><li>Deploy aligned lists via Call Planning and Veeva</li><li>Share guidance with the field</li></ul>
-    <div class="oc"><div class="gold-tag">Result</div><p>Alignment across TAS, Account Management and NPS</p></div></div>
+    <div class="oc"><div class="tag">Result</div><p>Alignment across TAS, Account Management and NPS</p></div></div>
 </section>
 
-<!-- ============ 7 CLOSE ============ -->
-<section class="scene" data-scene="7">
+<!-- ============ 8 CLOSE ============ -->
+<section class="scene" data-scene="8">
   <div class="a kicker" data-at="t:0.1" data-anim="up">CE Targeting · Summary</div>
   <div class="a title" data-at="t:0.22" data-anim="up">One team. One pipeline. Two lenses.</div>
   <div class="a uline" data-at="t:0.45" data-anim="grow"></div>
-  <div class="a tile blue" data-at="w:0:4" data-off="-0.1" data-anim="up" style="left:120px"><div class="big">HCP</div><div class="sm">Who to engage</div></div>
-  <div class="a tile purple" data-at="w:0:7" data-off="-0.05" data-anim="up" style="left:980px"><div class="big">HCO</div><div class="sm">Where to engage</div></div>
+  <div class="a tile" data-at="w:0:4" data-off="-0.1" data-anim="up" style="left:120px;background:var(--accent)"><div class="big">HCP</div><div class="sm">Who to engage</div></div>
+  <div class="a tile" data-at="w:0:7" data-off="-0.05" data-anim="up" style="left:980px;background:var(--ink)"><div class="big">HCO</div><div class="sm">Where to engage</div></div>
   <svg class="ov">
-    <path class="arrow" data-at="w:0:8" data-off="0.55" data-dur="0.35" d="M 476 632 L 544 632" stroke="#0B255E"/>
-    <path class="arrow" data-at="w:0:8" data-off="0.85" data-dur="0.35" d="M 972 632 L 1040 632" stroke="#0B255E"/>
-    <path class="arrow" data-at="w:0:8" data-off="1.15" data-dur="0.35" d="M 1408 632 L 1476 632" stroke="#0B255E"/>
+    <path class="arrow" data-at="w:0:8" data-off="0.55" data-dur="0.35" d="M 476 614 L 544 614" stroke="#5b6b63"/>
+    <path class="arrow" data-at="w:0:8" data-off="0.85" data-dur="0.35" d="M 972 614 L 1040 614" stroke="#5b6b63"/>
+    <path class="arrow" data-at="w:0:8" data-off="1.15" data-dur="0.35" d="M 1408 614 L 1476 614" stroke="#5b6b63"/>
   </svg>
-  <div class="a pchip" data-at="w:0:8" data-off="0.4" data-anim="right" style="left:120px;width:350px;background:#EAF1FB;color:#1656B4;border:2px solid #1656B4">Analytics inputs</div>
-  <div class="a pchip" data-at="w:0:8" data-off="0.7" data-anim="right" style="left:556px;width:410px;background:#EE5C58;color:#fff">FIA Targeting Team</div>
-  <div class="a pchip" data-at="w:0:8" data-off="1.0" data-anim="right" style="left:1052px;width:350px;background:#5C2C83;color:#fff">Call Planning</div>
-  <div class="a pchip" data-at="w:0:8" data-off="1.3" data-anim="right" style="left:1488px;width:312px;background:#5C2C83;color:#fff">Veeva</div>
-  <div class="a tagline" data-at="w:0:8" data-off="1.75" data-anim="up">Maximizing field impact and commercial outcomes.</div>
+  <div class="a pchip" data-at="w:0:8" data-off="0.4" data-anim="right" style="left:120px;width:350px;background:var(--panel);border:1.5px solid var(--line)">Analytics inputs</div>
+  <div class="a pchip" data-at="w:0:8" data-off="0.7" data-anim="right" style="left:556px;width:410px;background:var(--accent);color:#fff">Targeting Team</div>
+  <div class="a pchip" data-at="w:0:8" data-off="1.0" data-anim="right" style="left:1052px;width:350px;background:var(--panel);border:1.5px solid var(--line)">Call Planning</div>
+  <div class="a pchip" data-at="w:0:8" data-off="1.3" data-anim="right" style="left:1488px;width:312px;background:var(--panel);border:1.5px solid var(--line)">Veeva</div>
+  <div class="a tagline" data-at="w:1:0" data-off="-0.1" data-anim="up">Maximizing field impact and commercial outcomes.</div>
 </section>
 
-<svg class="ov" style="pointer-events:none"><defs id="defs"></defs></svg>
 <div id="caps"><div id="cap" style="opacity:0"></div></div>
 <div id="progbg"></div><div id="prog"></div>
 </div>
-
 <script>
 const easeOut = x => 1 - Math.pow(1 - x, 3);
 const easeOutBack = x => { const c1 = 1.4, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
@@ -256,8 +318,8 @@ window.init = function (timeline) {
       if (n.classList.contains('arrow')) {
         // style + draw-on via mask (works for dashed strokes too)
         const svg = n.ownerSVGElement;
-        n.setAttribute('fill', 'none'); n.setAttribute('stroke-width', '4'); n.setAttribute('stroke-linecap', 'round');
-        if (n.classList.contains('dashed')) { n.setAttribute('stroke-dasharray', '10 10'); n.setAttribute('stroke-linecap', 'butt'); n.setAttribute('stroke-width', '3.5'); }
+        n.setAttribute('fill', 'none'); n.setAttribute('stroke-width', '3'); n.setAttribute('stroke-linecap', 'round');
+        if (n.classList.contains('dashed')) { n.setAttribute('stroke-dasharray', '9 7'); n.setAttribute('stroke-linecap', 'butt'); n.setAttribute('stroke-width', '2.6'); }
         const len = n.getTotalLength();
         let defs = svg.querySelector('defs'); if (!defs) { defs = document.createElementNS(SVGNS, 'defs'); svg.prepend(defs); }
         const m = document.createElementNS(SVGNS, 'mask'); const id = 'm' + (maskId++);
@@ -271,7 +333,7 @@ window.init = function (timeline) {
         const end = n.getPointAtLength(len), pre = n.getPointAtLength(Math.max(0, len - 2));
         const ang = Math.atan2(end.y - pre.y, end.x - pre.x) * 180 / Math.PI;
         const head = document.createElementNS(SVGNS, 'path');
-        head.setAttribute('d', 'M -13 -9 L 2 0 L -13 9 Z'); head.setAttribute('fill', n.getAttribute('stroke'));
+        head.setAttribute('d', 'M -11 -7.5 L 2 0 L -11 7.5 Z'); head.setAttribute('fill', n.getAttribute('stroke'));
         head.setAttribute('stroke', n.getAttribute('stroke')); head.setAttribute('stroke-linejoin', 'round'); head.setAttribute('stroke-width', '2');
         head.dataset.base = `translate(${end.x} ${end.y}) rotate(${ang})`;
         svg.appendChild(head);

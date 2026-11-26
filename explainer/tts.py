@@ -12,7 +12,7 @@ k = Kokoro(f"{MODEL_DIR}/kokoro-v1.0.onnx", f"{MODEL_DIR}/voices-v1.0.bin")
 ACR = {
     "HCPs": "ˌeɪtʃsˌiːpˈiːz", "HCOs": "ˌeɪtʃsˌiːˈoʊz", "HCP": "ˌeɪtʃsˌiːpˈiː", "HCO": "ˌeɪtʃsˌiːˈoʊ",
     "CE": "sˌiːˈiː", "FIA": "ˌɛfˌaɪˈeɪ", "US": "jˌuːˈɛs", "IPST": "ˌaɪpˌiːˌɛsˈtiː",
-    "GMs": "dʒˌiːˈɛmz", "KPIs": "kˌeɪpˌiːˈaɪz",
+    "GMs": "dʒˌiːˈɛmz", "Dataiku": "dˈeɪɾəˌiːkuː", "KPIs": "kˌeɪpˌiːˈaɪz",
 }
 ACR_RE = re.compile(r"\b(" + "|".join(sorted(ACR, key=len, reverse=True)) + r")\b")
 
@@ -48,15 +48,18 @@ def trim(a, sr, thr=0.008):
     return a[s:e]
 
 SENTENCES = {
-    1: ["Here's how the CE team builds its target lists, for HCPs and HCOs."],
-    2: ["For HCPs, five analytics partners feed the FIA Targeting Team, with strategy, segments, predictive models, and response curves."],
-    3: ["FIA builds HCP target lists that flow into Call Planning and Veeva, with US IPST and GMs reviewing as needed."],
-    4: ["First, align on brand goals and the HCP universe.", "Next, models rank HCPs by opportunity.",
+    1: ["Here's how the CE team builds its target lists, for HCPs and HCOs: who to engage, and where."],
+    2: ["For HCPs, five standard analytics partners feed the Targeting Team, with strategy, segments, predictive models, data, and response curves.",
+        "On top of these, each brand brings its own sources, so the mix varies by brand."],
+    3: ["The Targeting Team collates every source using Dataiku flows and Python.",
+        "It cleans, joins, and scores the data to prepare the HCP universe and the target list."],
+    4: ["The Targeting Team builds HCP target lists that flow into Call Planning and Veeva, with US IPST and GMs reviewing as needed."],
+    5: ["First, align on brand goals and the HCP universe.", "Next, models rank HCPs by opportunity.",
         "Then, insights become target tiers.", "Finally, lists reach the field with clear guidance."],
-    5: ["HCO targeting uses the same engine to prioritize sites of care."],
-    6: ["Agree objectives and KPIs.", "Build and validate the account universe.",
+    6: ["HCO targeting uses the same engine to prioritize sites of care, with Decision Science and Data Products as key inputs."],
+    7: ["Agree objectives and KPIs.", "Build and validate the account universe.",
         "Review changes with stakeholders.", "Then deploy aligned lists to the field."],
-    7: ["One team, one pipeline: who to engage, and where."],
+    8: ["One team, one pipeline: who to engage, and where.", "Maximizing field impact and commercial outcomes."],
 }
 
 res = {}

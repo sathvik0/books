@@ -10,7 +10,7 @@ const FPS = 30;
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: 1920, height: 1080 }, deviceScaleFactor: 1 });
   await page.goto('file://' + path.resolve(__dirname, 'scenes.html'));
-  await page.evaluate(() => document.fonts.ready);
+  await page.evaluate(async () => { await Promise.all(['400','500','600','700'].map(w => document.fonts.load(`${w} 20px Plex`)).concat(['400','500','600'].map(w => document.fonts.load(`${w} 20px PlexMono`)))); await document.fonts.ready; });
   await page.evaluate(tl => window.init(tl), TL);
   if (mode === 'preview') {
     for (const t of rest) {
