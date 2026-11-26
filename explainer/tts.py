@@ -55,7 +55,7 @@ SENTENCES = {
         "It cleans, joins, and scores the data to prepare the HCP universe and the target list."],
     4: ["The Targeting Team builds HCP target lists that flow into Call Planning and Veeva, with US IPST and GMs reviewing as needed."],
     5: ["First, align on brand goals and the HCP universe.", "Next, models rank HCPs by opportunity.",
-        "Then, insights become target tiers.", "Finally, lists reach the field with clear guidance."],
+        "Then, each HCP is assigned a tier based on multiple attributes, keeping rep workload in mind, and calls are planned by tier.", "Finally, lists reach the field with clear guidance."],
     6: ["HCO targeting uses the same engine to prioritize sites of care, with Decision Science and Data Products as key inputs."],
     7: ["Agree objectives and KPIs.", "Build and validate the account universe.",
         "Review changes with stakeholders.", "Then deploy aligned lists to the field."],
