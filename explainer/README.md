@@ -10,4 +10,4 @@
 4. `node render.js <build> preview 12.5 30`: stills; `node render.js <build> video <fromFrame> <toFrame> out.mp4` renders frames.
 5. Mux the video with `mix.wav` in ffmpeg.
 
-All visuals live in `scenes.html` (Targeting Simulator theme: IBM Plex in `fonts/`, green accent). Elements are cued to narration words with `data-at="w:<sentence>:<word>"`.
+All visuals live in `scenes.html` (black background, orange accent, white/grey text and boxes; IBM Plex in `fonts/`). Elements are cued to narration words with `data-at="w:<sentence>:<word>"`.
