@@ -49,11 +49,12 @@ def trim(a, sr, thr=0.008):
 
 SENTENCES = {
     1: ["Here's how the CE team builds its target lists, for HCPs and HCOs: who to engage, and where."],
-    2: ["For HCPs, five standard analytics partners feed the Targeting Team, with strategy, segments, predictive models, data, and response curves.",
+    2: ["For HCPs, four standard analytics partners feed the Targeting Team, with strategy, segments, predictive models, and data.",
         "On top of these, each brand brings its own sources, so the mix varies by brand."],
     3: ["The Targeting Team collates every source using Dataiku flows and Python.",
         "It cleans, joins, and scores the data to prepare the HCP universe and the target list."],
-    4: ["The Targeting Team builds HCP target lists that flow into Call Planning and Veeva, with US IPST and GMs reviewing as needed."],
+    4: ["The Targeting Team builds HCP target lists that flow into Call Planning and Veeva, with US IPST and GMs reviewing as needed.",
+        "Resource Optimization feeds Call Planning separately, using response curves to shape call plans."],
     5: ["First, align on brand goals and the HCP universe.", "Next, models rank HCPs by opportunity.",
         "Then, each HCP is assigned a tier based on multiple attributes, keeping rep workload in mind, and calls are planned by tier.", "Finally, lists reach the field with clear guidance."],
     6: ["HCO targeting uses the same engine to prioritize sites of care, with Decision Science and Data Products as key inputs."],
