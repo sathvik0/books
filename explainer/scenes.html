@@ -81,6 +81,10 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:var(--bg);font-f
 .tile .sm{font-size:31px;font-weight:500;opacity:.9;margin-top:4px}
 .pchip{top:572px;height:84px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:25px;font-weight:600;white-space:nowrap}
 .tagline{left:120px;top:730px;font-size:40px;font-weight:600;color:var(--fg);letter-spacing:-.01em}
+.step{border-radius:14px;background:var(--panel);border:1.5px solid var(--line);padding:20px 22px;display:flex;flex-direction:column;justify-content:flex-start}
+.step .sn{font-family:'PlexMono',monospace;font-size:17px;font-weight:500;color:var(--accent);letter-spacing:.06em}
+.step .st{font-size:23px;font-weight:600;line-height:1.2;margin-top:8px}
+.step .ss{font-family:'PlexMono',monospace;font-size:14px;color:var(--muted);margin-top:8px}
 /* chrome */
 #caps{position:absolute;left:0;width:1920px;top:968px;display:flex;justify-content:center;pointer-events:none}
 #cap{background:rgba(28,28,28,.96);border:1px solid #3d3d3d;color:#f5f5f5;font-size:30px;font-weight:500;padding:11px 26px;border-radius:10px;white-space:nowrap}
@@ -126,48 +130,34 @@ svg.ov{position:absolute;inset:0;width:1920px;height:1080px;overflow:visible}
     <div class="bname" style="font-size:36px">Targeting Team</div><div class="bsub">collates every source</div></div>
 </section>
 
-<!-- ============ 3 DATA PREP (new) ============ -->
+<!-- ============ 3 HCP TARGETING PROCESS (10 steps) ============ -->
 <section class="scene" data-scene="3">
-  <div class="a kicker" data-at="t:0.1" data-anim="up">HCP Targeting · Data Preparation</div>
-  <div class="a title" data-at="t:0.22" data-anim="up">Collated in Dataiku and Python</div>
+  <div class="a kicker" data-at="t:0.1" data-anim="up">HCP Targeting · Process</div>
+  <div class="a title" data-at="t:0.22" data-anim="up">Ten steps to a refined target list</div>
   <div class="a uline" data-at="t:0.45" data-anim="grow"></div>
-  <div class="a grp" data-at="t:0.5" data-anim="fade" style="left:120px;top:330px">Sources</div>
-  <div class="a src" data-at="t:0.55" data-anim="right" style="top:366px">Decision Science</div>
-  <div class="a src" data-at="t:0.65" data-anim="right" style="top:432px">PPA</div>
-  <div class="a src" data-at="t:0.75" data-anim="right" style="top:498px">Predictive Analytics</div>
-  <div class="a src" data-at="t:0.85" data-anim="right" style="top:564px">Data Products / ARD</div>
-  <div class="a src off" data-at="t:0.95" data-anim="right" style="top:630px">Brand-specific sources</div>
-  <div class="a cont" data-at="w:0:1" data-anim="fade" style="left:500px;top:300px;width:830px;height:540px"></div>
-  <div class="a grp" data-at="w:0:1" data-off="0.15" data-anim="fade" style="left:530px;top:326px;color:var(--accent)">Targeting Team · Dataiku flow</div>
   <svg class="ov">
-    <path class="arrow" data-at="w:0:3" data-off="0.00" data-dur="0.4" d="M 414 393 L 494 393" stroke="#a3a3a3"/>
-    <path class="arrow" data-at="w:0:3" data-off="0.08" data-dur="0.4" d="M 414 459 L 494 459" stroke="#a3a3a3"/>
-    <path class="arrow" data-at="w:0:3" data-off="0.16" data-dur="0.4" d="M 414 525 L 494 525" stroke="#a3a3a3"/>
-    <path class="arrow" data-at="w:0:3" data-off="0.24" data-dur="0.4" d="M 414 591 L 494 591" stroke="#a3a3a3"/>
-    <path class="arrow dashed" data-at="w:0:3" data-off="0.32" data-dur="0.4" d="M 414 657 L 494 657" stroke="#8f8f8f"/>
-    <path class="arrow" data-at="w:0:7" data-off="0.20" data-dur="0.3" d="M 702 470 L 732 470" stroke="#a3a3a3"/>
-    <path class="arrow" data-at="w:0:7" data-off="0.40" data-dur="0.3" d="M 897 470 L 927 470" stroke="#a3a3a3"/>
-    <path class="arrow" data-at="w:0:7" data-off="0.60" data-dur="0.3" d="M 1092 470 L 1122 470" stroke="#a3a3a3"/>
-    <path class="arrow" data-at="w:0:10" data-off="0.25" data-dur="0.3" d="M 815 640 L 815 524" stroke="#ff7a1a"/>
-    <path class="arrow" data-at="w:0:10" data-off="0.35" data-dur="0.3" d="M 1010 640 L 1010 524" stroke="#ff7a1a"/>
-    <path class="arrow" data-at="w:0:10" data-off="0.45" data-dur="0.3" d="M 1205 640 L 1205 524" stroke="#ff7a1a"/>
-    <path class="arrow" data-at="w:1:10" data-off="-0.3" data-dur="0.45" d="M 1290 470 C 1360 470 1360 455 1424 455" stroke="#ff7a1a"/>
-    <path class="arrow" data-at="w:1:14" data-off="-0.3" data-dur="0.45" d="M 1615 520 L 1615 590" stroke="#ff7a1a"/>
+    <path class="arrow" data-at="w:0:7" data-off="-0.3" data-dur="0.25" d="M 416 332 L 454 332" stroke="#a3a3a3"/>
+    <path class="arrow" data-at="w:0:8" data-off="-0.3" data-dur="0.25" d="M 766 332 L 804 332" stroke="#a3a3a3"/>
+    <path class="arrow" data-at="w:0:10" data-off="-0.3" data-dur="0.25" d="M 1116 332 L 1154 332" stroke="#a3a3a3"/>
+    <path class="arrow" data-at="w:1:1" data-off="-0.3" data-dur="0.25" d="M 1466 332 L 1504 332" stroke="#a3a3a3"/>
+    <path class="arrow" data-at="w:2:2" data-off="-0.3" data-dur="0.25" d="M 416 522 L 454 522" stroke="#a3a3a3"/>
+    <path class="arrow" data-at="w:2:4" data-off="-0.3" data-dur="0.25" d="M 766 522 L 804 522" stroke="#a3a3a3"/>
+    <path class="arrow" data-at="w:2:9" data-off="-0.3" data-dur="0.25" d="M 1116 522 L 1154 522" stroke="#a3a3a3"/>
+    <path class="arrow" data-at="w:3:2" data-off="-0.3" data-dur="0.25" d="M 1466 522 L 1504 522" stroke="#a3a3a3"/>
+    <path class="arrow" data-at="w:1:0" data-off="-0.35" data-dur="0.5" d="M 1660 406 L 1660 427 L 260 427 L 260 446" stroke="#a3a3a3"/>
+    <path class="arrow" data-at="w:3:7" data-off="-0.4" data-dur="0.35" d="M 960 596 L 960 646" stroke="#ff7a1a"/>
   </svg>
-  <div class="a node" data-at="w:0:7" data-off="0.0" data-anim="pop" style="left:540px;top:416px;width:160px;height:108px"><div class="k">RECIPE 1</div><div class="v">Ingest</div></div>
-  <div class="a node" data-at="w:0:7" data-off="0.2" data-anim="pop" style="left:735px;top:416px;width:160px;height:108px"><div class="k">RECIPE 2</div><div class="v">Clean</div></div>
-  <div class="a node" data-at="w:0:7" data-off="0.4" data-anim="pop" style="left:930px;top:416px;width:160px;height:108px"><div class="k">RECIPE 3</div><div class="v">Join</div></div>
-  <div class="a node" data-at="w:0:7" data-off="0.6" data-anim="pop" style="left:1125px;top:416px;width:160px;height:108px"><div class="k">RECIPE 4</div><div class="v">Score</div></div>
-  <div class="a hl" data-at="w:1:1" data-anim="fade" style="left:733px;top:414px;width:164px;height:112px"></div>
-  <div class="a hl" data-at="w:1:2" data-anim="fade" style="left:928px;top:414px;width:164px;height:112px"></div>
-  <div class="a hl" data-at="w:1:4" data-anim="fade" style="left:1123px;top:414px;width:164px;height:112px"></div>
-  <div class="a box white" data-at="w:0:10" data-anim="up" style="left:735px;top:644px;width:550px;height:110px;align-items:flex-start;padding-left:28px;text-align:left">
-    <div class="bname mono" style="font-family:'PlexMono',monospace;font-size:26px;color:var(--accent)">&gt;_ Python</div>
-    <div class="bsub" style="margin-top:6px">custom rules, joins &amp; QC checks</div></div>
-  <div class="a box active" data-at="w:1:10" data-off="-0.2" data-anim="pop" style="left:1430px;top:396px;width:370px;height:122px">
-    <div class="bname">HCP universe</div><div class="bsub">eligible HCPs + attributes</div></div>
-  <div class="a box solid" data-at="w:1:14" data-off="-0.2" data-anim="pop" style="left:1430px;top:594px;width:370px;height:122px">
-    <div class="bname">Target list</div><div class="bsub">scored &amp; tiered</div></div>
+  <div class="a step" data-at="w:0:1" data-off="-0.1" data-anim="pop" style="left:110px;top:262px;width:300px;height:140px"><div class="sn">01</div><div class="st">Alignment with CE team</div><div class="ss">objectives &amp; scope</div></div>
+  <div class="a step" data-at="w:0:7" data-off="-0.1" data-anim="pop" style="left:460px;top:262px;width:300px;height:140px"><div class="sn">02</div><div class="st">Data collection</div><div class="ss">partner &amp; brand sources</div></div>
+  <div class="a step" data-at="w:0:8" data-off="-0.1" data-anim="pop" style="left:810px;top:262px;width:300px;height:140px"><div class="sn">03</div><div class="st">Data ingestion</div><div class="ss">load into the pipeline</div></div>
+  <div class="a step" data-at="w:0:10" data-off="-0.1" data-anim="pop" style="left:1160px;top:262px;width:300px;height:140px"><div class="sn">04</div><div class="st">Data validation</div><div class="ss">quality &amp; completeness</div></div>
+  <div class="a step" data-at="w:1:1" data-off="-0.1" data-anim="pop" style="left:1510px;top:262px;width:300px;height:140px"><div class="sn">05</div><div class="st">Python &amp; Dataiku build</div><div class="ss">Databricks + Dataiku flows</div></div>
+  <div class="a step" data-at="w:1:9" data-off="-0.1" data-anim="pop" style="left:110px;top:452px;width:300px;height:140px"><div class="sn">06</div><div class="st">Consolidation</div><div class="ss">one view of every HCP</div></div>
+  <div class="a step" data-at="w:2:2" data-off="-0.1" data-anim="pop" style="left:460px;top:452px;width:300px;height:140px"><div class="sn">07</div><div class="st">HCP selection</div><div class="ss">eligible HCP universe</div></div>
+  <div class="a step" data-at="w:2:4" data-off="-0.1" data-anim="pop" style="left:810px;top:452px;width:300px;height:140px"><div class="sn">08</div><div class="st">Tiering &amp; refinements</div><div class="ss">multi-attribute tiers</div></div>
+  <div class="a step" data-at="w:2:9" data-off="-0.1" data-anim="pop" style="left:1160px;top:452px;width:300px;height:140px"><div class="sn">09</div><div class="st">Excluding HCPs</div><div class="ss">apply exclusion rules</div></div>
+  <div class="a step" data-at="w:3:2" data-off="-0.1" data-anim="pop" style="left:1510px;top:452px;width:300px;height:140px"><div class="sn">10</div><div class="st">Summaries</div><div class="ss">review-ready outputs</div></div>
+  <div class="a box solid" data-at="w:3:7" data-off="-0.15" data-anim="pop" style="left:560px;top:652px;width:800px;height:118px"><div class="bname" style="font-size:31px">Highly refined, optimal target list</div><div class="bsub">ready for Call Planning &amp; Veeva</div></div>
 </section>
 
 <!-- ============ 4 HCP FLOW ============ -->
