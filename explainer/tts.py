@@ -66,9 +66,7 @@ SENTENCES = {
         "The result is a highly refined, optimal target list."],
     6: ["For HCOs, we start from the HCP target list.",
         "All sites affiliated with the selected HCPs, plus additional key sites, are combined into the HCO universe, then prioritized into HCO target lists for Call Planning and Veeva."],
-    7: ["Agree objectives and KPIs.", "Build and validate the account universe.",
-        "Review changes with stakeholders.", "Then deploy aligned lists to the field."],
-    8: ["One team, one pipeline: who to engage, and where.", "Maximizing field impact and commercial outcomes."],
+    7: ["One team, one pipeline: who to engage, and where.", "Maximizing field impact and commercial outcomes."],
 }
 
 res = {}
