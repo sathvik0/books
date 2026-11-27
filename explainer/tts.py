@@ -57,7 +57,7 @@ SENTENCES = {
         "Next, we collect data from the analytics partners and brand-specific sources.",
         "We ingest it into one pipeline, standardizing formats and HCP identifiers.",
         "We validate quality and completeness, flagging gaps and duplicates.",
-        "Then we build Python on Databricks and Dataiku flows, so every run is repeatable."],
+        "Then we build Python scripts on the Databricks and Dataiku platforms."],
     5: ["We consolidate every source into a single view of each HCP.",
         "We select the HCPs that meet the eligibility rules, forming the HCP universe.",
         "Each HCP is tiered on multiple attributes, keeping rep workload in mind, so calls can be planned by tier.",
