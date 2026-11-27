@@ -85,6 +85,13 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:var(--bg);font-f
 .step .sn{font-family:'PlexMono',monospace;font-size:17px;font-weight:500;color:var(--accent);letter-spacing:.06em}
 .step .st{font-size:23px;font-weight:600;line-height:1.2;margin-top:8px}
 .step .ss{font-family:'PlexMono',monospace;font-size:14px;color:var(--muted);margin-top:8px}
+.pcard{top:262px;width:316px;border-radius:16px;background:#141414;border:1.5px solid var(--line);padding:26px 24px;display:flex;flex-direction:column}
+.pcard .pn{font-family:'PlexMono',monospace;font-size:36px;font-weight:500;color:var(--accent)}
+.pcard .pt{font-size:25px;font-weight:600;line-height:1.2;margin-top:10px;min-height:60px}
+.pcard .pl{height:1px;background:var(--line);margin:18px 0 16px}
+.pcard ul{list-style:none}
+.pcard li{position:relative;padding-left:20px;font-size:20px;line-height:1.38;margin-bottom:14px;color:#d9d9d9}
+.pcard li::before{content:"";position:absolute;left:1px;top:11px;width:7px;height:7px;border-radius:2px;background:var(--accent)}
 /* chrome */
 #caps{position:absolute;left:0;width:1920px;top:968px;display:flex;justify-content:center;pointer-events:none}
 #cap{background:rgba(28,28,28,.96);border:1px solid #3d3d3d;color:#f5f5f5;font-size:30px;font-weight:500;padding:11px 26px;border-radius:10px;white-space:nowrap}
@@ -130,38 +137,8 @@ svg.ov{position:absolute;inset:0;width:1920px;height:1080px;overflow:visible}
     <div class="bname" style="font-size:36px">Targeting Team</div><div class="bsub">collates every source</div></div>
 </section>
 
-<!-- ============ 3 HCP TARGETING PROCESS (10 steps) ============ -->
+<!-- ============ 3 HCP FLOW ============ -->
 <section class="scene" data-scene="3">
-  <div class="a kicker" data-at="t:0.1" data-anim="up">HCP Targeting · Process</div>
-  <div class="a title" data-at="t:0.22" data-anim="up">Ten steps to a refined target list</div>
-  <div class="a uline" data-at="t:0.45" data-anim="grow"></div>
-  <svg class="ov">
-    <path class="arrow" data-at="w:0:7" data-off="-0.3" data-dur="0.25" d="M 416 332 L 454 332" stroke="#a3a3a3"/>
-    <path class="arrow" data-at="w:0:8" data-off="-0.3" data-dur="0.25" d="M 766 332 L 804 332" stroke="#a3a3a3"/>
-    <path class="arrow" data-at="w:0:10" data-off="-0.3" data-dur="0.25" d="M 1116 332 L 1154 332" stroke="#a3a3a3"/>
-    <path class="arrow" data-at="w:1:1" data-off="-0.3" data-dur="0.25" d="M 1466 332 L 1504 332" stroke="#a3a3a3"/>
-    <path class="arrow" data-at="w:2:2" data-off="-0.3" data-dur="0.25" d="M 416 522 L 454 522" stroke="#a3a3a3"/>
-    <path class="arrow" data-at="w:2:4" data-off="-0.3" data-dur="0.25" d="M 766 522 L 804 522" stroke="#a3a3a3"/>
-    <path class="arrow" data-at="w:2:9" data-off="-0.3" data-dur="0.25" d="M 1116 522 L 1154 522" stroke="#a3a3a3"/>
-    <path class="arrow" data-at="w:3:2" data-off="-0.3" data-dur="0.25" d="M 1466 522 L 1504 522" stroke="#a3a3a3"/>
-    <path class="arrow" data-at="w:1:0" data-off="-0.35" data-dur="0.5" d="M 1660 406 L 1660 427 L 260 427 L 260 446" stroke="#a3a3a3"/>
-    <path class="arrow" data-at="w:3:7" data-off="-0.4" data-dur="0.35" d="M 960 596 L 960 646" stroke="#ff7a1a"/>
-  </svg>
-  <div class="a step" data-at="w:0:1" data-off="-0.1" data-anim="pop" style="left:110px;top:262px;width:300px;height:140px"><div class="sn">01</div><div class="st">Alignment with CE team</div><div class="ss">objectives &amp; scope</div></div>
-  <div class="a step" data-at="w:0:7" data-off="-0.1" data-anim="pop" style="left:460px;top:262px;width:300px;height:140px"><div class="sn">02</div><div class="st">Data collection</div><div class="ss">partner &amp; brand sources</div></div>
-  <div class="a step" data-at="w:0:8" data-off="-0.1" data-anim="pop" style="left:810px;top:262px;width:300px;height:140px"><div class="sn">03</div><div class="st">Data ingestion</div><div class="ss">load into the pipeline</div></div>
-  <div class="a step" data-at="w:0:10" data-off="-0.1" data-anim="pop" style="left:1160px;top:262px;width:300px;height:140px"><div class="sn">04</div><div class="st">Data validation</div><div class="ss">quality &amp; completeness</div></div>
-  <div class="a step" data-at="w:1:1" data-off="-0.1" data-anim="pop" style="left:1510px;top:262px;width:300px;height:140px"><div class="sn">05</div><div class="st">Python &amp; Dataiku build</div><div class="ss">Databricks + Dataiku flows</div></div>
-  <div class="a step" data-at="w:1:9" data-off="-0.1" data-anim="pop" style="left:110px;top:452px;width:300px;height:140px"><div class="sn">06</div><div class="st">Consolidation</div><div class="ss">one view of every HCP</div></div>
-  <div class="a step" data-at="w:2:2" data-off="-0.1" data-anim="pop" style="left:460px;top:452px;width:300px;height:140px"><div class="sn">07</div><div class="st">HCP selection</div><div class="ss">eligible HCP universe</div></div>
-  <div class="a step" data-at="w:2:4" data-off="-0.1" data-anim="pop" style="left:810px;top:452px;width:300px;height:140px"><div class="sn">08</div><div class="st">Tiering &amp; refinements</div><div class="ss">multi-attribute tiers</div></div>
-  <div class="a step" data-at="w:2:9" data-off="-0.1" data-anim="pop" style="left:1160px;top:452px;width:300px;height:140px"><div class="sn">09</div><div class="st">Excluding HCPs</div><div class="ss">apply exclusion rules</div></div>
-  <div class="a step" data-at="w:3:2" data-off="-0.1" data-anim="pop" style="left:1510px;top:452px;width:300px;height:140px"><div class="sn">10</div><div class="st">Summaries</div><div class="ss">review-ready outputs</div></div>
-  <div class="a box solid" data-at="w:3:7" data-off="-0.15" data-anim="pop" style="left:560px;top:652px;width:800px;height:118px"><div class="bname" style="font-size:31px">Highly refined, optimal target list</div><div class="bsub">ready for Call Planning &amp; Veeva</div></div>
-</section>
-
-<!-- ============ 4 HCP FLOW ============ -->
-<section class="scene" data-scene="4">
   <div class="a kicker" data-at="t:0.1" data-anim="up">HCP Targeting · Flow</div>
   <div class="a title" data-at="t:0.22" data-anim="up">From target lists to the field</div>
   <div class="a uline" data-at="t:0.45" data-anim="grow"></div>
@@ -183,30 +160,48 @@ svg.ov{position:absolute;inset:0;width:1920px;height:1080px;overflow:visible}
   <div class="a lbl" data-at="w:1:7" data-anim="right" style="left:1236px;top:742px;color:var(--muted)">Response curves</div>
 </section>
 
-<!-- ============ 5 HCP WORKFLOW ============ -->
-<section class="scene" data-scene="5">
-  <div class="a kicker" data-at="t:0.1" data-anim="up">HCP Targeting · Workflow</div>
-  <div class="a title" data-at="t:0.22" data-anim="up">Four steps from strategy to the field</div>
+<!-- ============ 4 HCP TARGETING PROCESS (1–5) ============ -->
+<section class="scene" data-scene="4">
+  <div class="a kicker" data-at="t:0.1" data-anim="up">HCP Targeting · Process · Steps 1–5</div>
+  <div class="a title" data-at="t:0.22" data-anim="up">Steps 1–5: preparing the data</div>
   <div class="a uline" data-at="t:0.45" data-anim="grow"></div>
-  <div class="a wcard" data-at="w:0:0" data-off="-0.15" data-anim="up" style="left:120px;--h:#ff7a1a;--acc:#5a2600">
-    <div class="hd"><div class="num">01</div><div class="ht">Targeting Strategy Alignment</div></div>
-    <ul><li>Align on brand goals and priorities</li><li>Define the HCP universe and eligibility</li><li>Agree success KPIs up front</li></ul>
-    <div class="oc"><div class="tag">Outcome</div><p>Shared objectives and a defined HCP universe</p></div></div>
-  <div class="a chev" data-at="w:1:0" data-off="-0.3" data-anim="pop" style="left:514px"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M7 4 L13 10 L7 16" fill="none" stroke="#0a0a0a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-  <div class="a wcard" data-at="w:1:0" data-off="-0.15" data-anim="up" style="left:550px;--h:#ff7a1a;--acc:#5a2600">
-    <div class="hd"><div class="num">02</div><div class="ht">Advanced Analytics &amp; Opportunity Assessment</div></div>
-    <ul><li>Collate sources in Dataiku and Python</li><li>Apply propensity and patient finder models</li><li>Rank HCPs by opportunity</li></ul>
-    <div class="oc"><div class="tag">Outcome</div><p>An opportunity-ranked HCP universe</p></div></div>
-  <div class="a chev" data-at="w:2:0" data-off="-0.3" data-anim="pop" style="left:944px"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M7 4 L13 10 L7 16" fill="none" stroke="#0a0a0a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-  <div class="a wcard" data-at="w:2:0" data-off="-0.15" data-anim="up" style="left:980px;--h:#ff7a1a;--acc:#5a2600">
-    <div class="hd"><div class="num">03</div><div class="ht">Target List Optimization</div></div>
-    <ul><li>Assign each HCP a tier from multiple attributes</li><li>Keep rep workload and capacity in balance</li><li>Plan call frequency by tier</li></ul>
-    <div class="oc"><div class="tag">Outcome</div><p>Tiered target lists with calls planned by tier</p></div></div>
-  <div class="a chev" data-at="w:3:0" data-off="-0.3" data-anim="pop" style="left:1374px"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M7 4 L13 10 L7 16" fill="none" stroke="#0a0a0a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-  <div class="a wcard" data-at="w:3:0" data-off="-0.15" data-anim="up" style="left:1410px;--h:#ff7a1a;--acc:#5a2600">
-    <div class="hd"><div class="num">04</div><div class="ht">Field Enablement &amp; Deployment</div></div>
-    <ul><li>Load lists into Call Planning and Veeva</li><li>Equip the field with clear guidance</li><li>Monitor uptake and refresh</li></ul>
-    <div class="oc"><div class="tag">Outcome</div><p>Field-ready targets with clear guidance</p></div></div>
+  <div class="a pcard" data-at="w:0:0" data-off="-0.15" data-anim="up" style="left:110px;height:400px"><div class="pn">01</div><div class="pt">Alignment with CE team</div><div class="pl"></div><ul><li>Agree brand goals, scope and timelines</li><li>Confirm targeting criteria and KPIs</li></ul></div>
+  <div class="a hl" data-at="w:0:0" data-off="-0.15" data-end="w:1:0" data-endoff="-0.15" data-anim="fade" style="left:108px;top:260px;width:320px;height:404px;border-radius:17px;background:transparent;border-width:2px"></div>
+  <div class="a chev" data-at="w:1:0" data-off="-0.35" data-anim="pop" style="left:420px;top:296px"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M7 4 L13 10 L7 16" fill="none" stroke="#0a0a0a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div class="a pcard" data-at="w:1:0" data-off="-0.15" data-anim="up" style="left:456px;height:400px"><div class="pn">02</div><div class="pt">Data collection</div><div class="pl"></div><ul><li>Gather inputs from the analytics partners</li><li>Add brand-specific sources</li></ul></div>
+  <div class="a hl" data-at="w:1:0" data-off="-0.15" data-end="w:2:0" data-endoff="-0.15" data-anim="fade" style="left:454px;top:260px;width:320px;height:404px;border-radius:17px;background:transparent;border-width:2px"></div>
+  <div class="a chev" data-at="w:2:0" data-off="-0.35" data-anim="pop" style="left:766px;top:296px"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M7 4 L13 10 L7 16" fill="none" stroke="#0a0a0a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div class="a pcard" data-at="w:2:0" data-off="-0.15" data-anim="up" style="left:802px;height:400px"><div class="pn">03</div><div class="pt">Data ingestion</div><div class="pl"></div><ul><li>Load every source into one pipeline</li><li>Standardize formats and HCP IDs</li></ul></div>
+  <div class="a hl" data-at="w:2:0" data-off="-0.15" data-end="w:3:0" data-endoff="-0.15" data-anim="fade" style="left:800px;top:260px;width:320px;height:404px;border-radius:17px;background:transparent;border-width:2px"></div>
+  <div class="a chev" data-at="w:3:0" data-off="-0.35" data-anim="pop" style="left:1112px;top:296px"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M7 4 L13 10 L7 16" fill="none" stroke="#0a0a0a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div class="a pcard" data-at="w:3:0" data-off="-0.15" data-anim="up" style="left:1148px;height:400px"><div class="pn">04</div><div class="pt">Data validation</div><div class="pl"></div><ul><li>Check quality and completeness</li><li>Flag gaps and duplicates</li></ul></div>
+  <div class="a hl" data-at="w:3:0" data-off="-0.15" data-end="w:4:0" data-endoff="-0.15" data-anim="fade" style="left:1146px;top:260px;width:320px;height:404px;border-radius:17px;background:transparent;border-width:2px"></div>
+  <div class="a chev" data-at="w:4:0" data-off="-0.35" data-anim="pop" style="left:1458px;top:296px"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M7 4 L13 10 L7 16" fill="none" stroke="#0a0a0a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div class="a pcard" data-at="w:4:0" data-off="-0.15" data-anim="up" style="left:1494px;height:400px"><div class="pn">05</div><div class="pt">Python &amp; Dataiku build</div><div class="pl"></div><ul><li>Python on Databricks for heavy processing</li><li>Dataiku flows for repeatable runs</li></ul></div>
+  <div class="a hl" data-at="w:4:0" data-off="-0.15" data-anim="fade" style="left:1492px;top:260px;width:320px;height:404px;border-radius:17px;background:transparent;border-width:2px"></div>
+</section>
+
+<!-- ============ 5 HCP TARGETING PROCESS (6–10) ============ -->
+<section class="scene" data-scene="5">
+  <div class="a kicker" data-at="t:0.1" data-anim="up">HCP Targeting · Process · Steps 6–10</div>
+  <div class="a title" data-at="t:0.22" data-anim="up">Steps 6–10: building the list</div>
+  <div class="a uline" data-at="t:0.45" data-anim="grow"></div>
+  <div class="a pcard" data-at="w:0:0" data-off="-0.15" data-anim="up" style="left:110px;height:420px"><div class="pn">06</div><div class="pt">Consolidation</div><div class="pl"></div><ul><li>Join every source on HCP ID</li><li>One view: attributes, scores, segments</li></ul></div>
+  <div class="a hl" data-at="w:0:0" data-off="-0.15" data-end="w:1:0" data-endoff="-0.15" data-anim="fade" style="left:108px;top:260px;width:320px;height:424px;border-radius:17px;background:transparent;border-width:2px"></div>
+  <div class="a chev" data-at="w:1:0" data-off="-0.35" data-anim="pop" style="left:420px;top:296px"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M7 4 L13 10 L7 16" fill="none" stroke="#0a0a0a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div class="a pcard" data-at="w:1:0" data-off="-0.15" data-anim="up" style="left:456px;height:420px"><div class="pn">07</div><div class="pt">HCP selection</div><div class="pl"></div><ul><li>Apply eligibility rules</li><li>Define the HCP universe</li></ul></div>
+  <div class="a hl" data-at="w:1:0" data-off="-0.15" data-end="w:2:0" data-endoff="-0.15" data-anim="fade" style="left:454px;top:260px;width:320px;height:424px;border-radius:17px;background:transparent;border-width:2px"></div>
+  <div class="a chev" data-at="w:2:0" data-off="-0.35" data-anim="pop" style="left:766px;top:296px"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M7 4 L13 10 L7 16" fill="none" stroke="#0a0a0a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div class="a pcard" data-at="w:2:0" data-off="-0.15" data-anim="up" style="left:802px;height:420px"><div class="pn">08</div><div class="pt">Tiering &amp; refinements</div><div class="pl"></div><ul><li>Tier on multiple attributes</li><li>Balance rep workload; plan calls by tier</li></ul></div>
+  <div class="a hl" data-at="w:2:0" data-off="-0.15" data-end="w:3:0" data-endoff="-0.15" data-anim="fade" style="left:800px;top:260px;width:320px;height:424px;border-radius:17px;background:transparent;border-width:2px"></div>
+  <div class="a chev" data-at="w:3:0" data-off="-0.35" data-anim="pop" style="left:1112px;top:296px"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M7 4 L13 10 L7 16" fill="none" stroke="#0a0a0a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div class="a pcard" data-at="w:3:0" data-off="-0.15" data-anim="up" style="left:1148px;height:420px"><div class="pn">09</div><div class="pt">Excluding HCPs</div><div class="pl"></div><ul><li>Remove ineligible or out-of-scope HCPs</li><li>Apply brand and compliance exclusions</li></ul></div>
+  <div class="a hl" data-at="w:3:0" data-off="-0.15" data-end="w:4:0" data-endoff="-0.15" data-anim="fade" style="left:1146px;top:260px;width:320px;height:424px;border-radius:17px;background:transparent;border-width:2px"></div>
+  <div class="a chev" data-at="w:4:0" data-off="-0.35" data-anim="pop" style="left:1458px;top:296px"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M7 4 L13 10 L7 16" fill="none" stroke="#0a0a0a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div class="a pcard" data-at="w:4:0" data-off="-0.15" data-anim="up" style="left:1494px;height:420px"><div class="pn">10</div><div class="pt">Summaries</div><div class="pl"></div><ul><li>Summarize by tier and territory</li><li>Share for CE, US IPST and GM review</li></ul></div>
+  <div class="a hl" data-at="w:4:0" data-off="-0.15" data-anim="fade" style="left:1492px;top:260px;width:320px;height:424px;border-radius:17px;background:transparent;border-width:2px"></div>
+  <svg class="ov"><path class="arrow" data-at="w:5:0" data-off="-0.4" data-dur="0.35" d="M 960 688 L 960 736" stroke="#ff7a1a"/></svg>
+  <div class="a box solid" data-at="w:5:3" data-off="-0.2" data-anim="pop" style="left:560px;top:742px;width:800px;height:118px"><div class="bname" style="font-size:31px">Highly refined, optimal target list</div><div class="bsub">ready for Call Planning &amp; Veeva</div></div>
 </section>
 
 <!-- ============ 6 HCO FLOW ============ -->
@@ -306,7 +301,7 @@ window.init = function (timeline) {
     const items = [];
     el.querySelectorAll('[data-at]').forEach(n => {
       const at = cueTime(sc, n.dataset.at) + parseFloat(n.dataset.off || 0);
-      const it = { n, at, anim: n.dataset.anim || 'up', dur: parseFloat(n.dataset.dur || (n.classList.contains('arrow') ? 0.55 : 0.5)) };
+      const it = { n, at, end: n.dataset.end ? cueTime(sc, n.dataset.end) + parseFloat(n.dataset.endoff || 0) : null, anim: n.dataset.anim || 'up', dur: parseFloat(n.dataset.dur || (n.classList.contains('arrow') ? 0.55 : 0.5)) };
       if (n.classList.contains('arrow')) {
         // style + draw-on via mask (works for dashed strokes too)
         const svg = n.ownerSVGElement;
@@ -377,7 +372,7 @@ window.render = function (t) {
           it.head.setAttribute('transform', `${it.head.dataset.base} scale(${0.4 + 0.6 * easeOut(hp)})`);
           break;
         case 'grow': n.style.opacity = p > 0 ? 1 : 0; n.style.transform = `scaleX(${e})`; break;
-        case 'fade': n.style.opacity = e; break;
+        case 'fade': n.style.opacity = e * (it.end != null ? 1 - clamp((lt - it.end) / 0.3) : 1); break;
         case 'pop': n.style.opacity = e; n.style.transform = `scale(${0.86 + 0.14 * easeOutBack(p)})`; break;
         case 'right': n.style.opacity = e; n.style.transform = `translateX(${(1 - e) * -36}px)`; break;
         case 'down': n.style.opacity = e; n.style.transform = `translateY(${(1 - e) * -30}px)`; break;

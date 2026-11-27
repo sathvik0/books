@@ -5,8 +5,8 @@ B = sys.argv[1]
 vo = json.load(open(f"{B}/vo.json"))
 SR = 24000
 # scene: (duration, first VO offset, tail kept after last sentence)
-PLAN = {1: (8.5, 0.9), 2: (14.5, 0.7), 3: (21.5, 0.7), 4: (16.0, 0.7), 5: (18.5, 0.9),
-        6: (16.0, 0.7), 7: (12.5, 0.9), 8: (8.5, 0.8)}
+PLAN = {1: (8.5, 0.9), 2: (14.5, 0.7), 3: (16.0, 0.7), 4: (24.0, 0.7), 5: (27.0, 0.7),
+        6: (16.9, 0.7), 7: (12.5, 0.9), 8: (8.5, 0.8)}
 TAIL = 0.9
 scenes, t = [], 0.0
 for sid in sorted(PLAN, key=int):
